@@ -85,4 +85,80 @@ function create() {
 }
 
 function update	() {
+	game.physics.arcade.collide(player, platforms);
+	game.physics.arcade.collide(enemy1, platforms);
+	game.physics.arcade.collide(enemy2, platforms);
+	game.physics.arcade.collide(enemy3, platforms);
+
+	player.body.velocity.x = 0;
+
+	if(cursors.left.isDown) {
+		player.body.velocity.x = -150
+		player.animations.play('left');
+	}
+	else if(cursors.right.isDown) {
+		player.body.velocity.x = 150
+		player.animations.play('right');
+	}
+	else {
+		player.animations.stop();
+		player.frame = 4;
+	}
+	if(cursor.up.isDown && player.body.touching.down) {
+		player.body.velocity.y = -300;
+	}
+
+	if(enemy1.x > 759) {
+		enemy1.animation.play('left');
+		enemy1.body.velocity.x = -120;
+	}
+	else if(enemy1.x < 405) {
+		enemy1.animation.play('right');
+		enemy1.body.velocity.x = 120;
+	}
+	if(enemy2.x > 200) {
+		enemy2.animation.play('left');
+		enemy2.body.velocity.x = -80;
+	}
+	else if(enemy2.x < 21) {
+		enemy2.animation.play('right');
+		enemy2.body.velocity.x = 80;
+	}
+	if(enemy3.x > 759) {
+		enemy3.animation.play('left');
+		enemy3.body.velocity.x = -150;
+	}
+	else if(enemy3.x < 201) {
+		enemy3.animation.play('right');
+		enemy3.body.velocity.x = 150;
+	}
+	game.physics.arcade.collide(stars, platforms);
+	game.physics.arcade.overlap(player, stars, collectStar, null, this);
+	game.physics.arcade.collide(stars, platforms);
+
+	game.physics.arcade.overlap(player, enemy1, loseLife, null, this);
+	game.physics.arcade.overlap(player, enemy2, checkLifeLeft, null, this);
+	game.physics.arcade.overlap(player, enemy3, loseLife, null, this);
+}
+
+function collectStar(player, star) {
+	star.kill();
+	score += 1;
+	scoreText.setText(score);
+
+	star = stars.create(Math.floor(Math.random() * 750), 0, 'star');
+	star.body.gravity.y = 200;
+	star.body.bounce.y = 0.7 + Math.random() * 0.2;
+}
+function loseLife(player, enemy) {
+	enemy.kill();
+	life -= 1;
+	lifeText.setText(life);
+	enemy.reset(760, 20);
+}
+function checkLifeLeft(player, enemy) {
+	enemy.kill();
+	life -= 1;
+	lifeText.setText(life);
+	enemy.reset(10, 20);	
 }
