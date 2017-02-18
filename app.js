@@ -7,7 +7,7 @@ function preload() {
 	game.load.image('ground', 'assets/platform.png');
 	game.load.image('star', 'assets/star.png');
 	game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-	game.load.spritesheets('evils', 'assets/baddie.png', 32, 32);
+	game.load.spritesheet('evils', 'assets/baddie.png', 32, 32);
 }
 
 function create() {
@@ -62,7 +62,7 @@ function create() {
 
 	stars = game.add.physicsGroup();
 	star.enableBody = true;
-	for(var i = 0; 1 < 12; 1++) {
+	for(var i = 0; i < 12; i++) {
 		var star = stars.create(i * 70, 0, 'star');
 		star.body.gravity.y = 200;
 		star.body.bounce.y = 0.7 + Math.random() * 0.2;
