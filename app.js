@@ -202,4 +202,11 @@ function loseLifeLeft (player, enemy) {
   life = life - 1;
   lifetext.setText(life);
   enemy.reset(10, 20);
+  if(life == 0) {
+  	player.kill();
+  	enemy1.kill();
+  	enemy2.kill();
+  	enemy3.kill();
+  	
+  }
 }
