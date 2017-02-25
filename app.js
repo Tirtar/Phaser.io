@@ -1,6 +1,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var score = 0;
 var life = 3;
+var button;
 
 function preload() {
   game.load.image('sky', 'assets/sky2.png');
@@ -203,11 +204,10 @@ function loseLifeLeft (player, enemy) {
   lifetext.setText(life);
   enemy.reset(10, 20);
   if(life == 0) {
-  	player.kill();
-  	enemy1.kill();
-  	enemy2.kill();
-  	enemy3.kill
   		game.world.removeAll();
-  		
-  }
+  		button = game.add.button(300, 400, 'button', actionOnClick, this, 2, 1, 0);
+    }
 }
+  function actionOnClick() {
+  	this.game.state.restart();
+  }
