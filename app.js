@@ -206,7 +206,8 @@ function loseLifeLeft (player, enemy) {
   	player.kill();
   	enemy1.kill();
   	enemy2.kill();
-  	enemy3.kill();
-
+  	enemy3.kill
+  		game.world.removeAll();
+  		
   }
 }
