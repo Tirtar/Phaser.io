@@ -3,7 +3,7 @@ var score = 0;
 var life = 3;
 
 function preload() {
-  game.load.image('sky', 'assets/starfield2.png');
+  game.load.image('sky', 'assets/sky2.png');
   game.load.image('ground', 'assets/platform.png');
   game.load.image('star', 'assets/star.png');
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
